@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/dayTextView"
+        android:backgroundTint="@color/colorPrimary"
+        android:textColor="@color/textColorPrimary"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <CheckBox
+            android:id="@+id/taskCheckBox"
+            android:layout_width="@dimen/checkBoxWidth"
+            android:layout_height="@dimen/checkBoxHeight"
+            android:text="@string/default_txtview"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/timeToCompleteImage"
+            android:layout_width="@dimen/timeToCompleteWidth"
+            android:layout_height="@dimen/timeToCompleteImageHeight"
+            android:scaleType="center"
+            app:layout_constraintEnd_toStartOf="@+id/subItemButton"
+            app:layout_constraintStart_toEndOf="@+id/taskCheckBox"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_timer_black_24dp" />
+
+        <TextView
+            android:id="@+id/timeToCompleteTextView"
+            android:layout_width="@dimen/timeToCompleteWidth"
+            android:layout_height="@dimen/timeToCompleteTextHeight"
+            android:text="@string/default_txtview"
+            app:layout_constraintEnd_toStartOf="@+id/subItemButton"
+            app:layout_constraintStart_toEndOf="@+id/taskCheckBox"
+            app:layout_constraintTop_toBottomOf="@+id/timeToCompleteImage" />
+
+        <ImageButton
+            android:id="@+id/subItemButton"
+            android:layout_width="@dimen/subItemButtonWidth"
+            android:layout_height="@dimen/subItemButtonHeight"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_format_list_bulleted_black_24dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</LinearLayout>

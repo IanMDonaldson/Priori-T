@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="checkBoxWidth">300dp</dimen>
+    <dimen name="checkBoxHeight">46dp</dimen>
+    <dimen name="timeToCompleteWidth">62dp</dimen>
+    <dimen name="timeToCompleteImageHeight">23dp</dimen>
+    <dimen name="timeToCompleteTextHeight">24dp</dimen>
+    <dimen name="subItemButtonWidth">46dp</dimen>
+    <dimen name="subItemButtonHeight">46dp</dimen>
+</resources>

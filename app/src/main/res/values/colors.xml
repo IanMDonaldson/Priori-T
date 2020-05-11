@@ -3,4 +3,12 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+    <color name="buttonColorCompletedTaskBG">#3fff3b</color>
+    <color name="textColorCompletedTask">#4d4d4d</color>
+    <color name="dueDateTextColor">#a50002</color>
+    <color name="textColorPrimary">#000000</color>
+    <color name="textViewtxtColor">#ffffff</color>
+    <color name="colorTimetoComplete">#15138a</color>
+
+
 </resources>

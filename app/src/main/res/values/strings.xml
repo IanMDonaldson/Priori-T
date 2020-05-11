@@ -1,10 +1,17 @@
 <resources>
     <string name="app_name">Priori-T</string>
-    <string name="upcoming">Upcoming</string>
-    <string name="tommorrow_txtview_label">Tomorrow</string>
-    <string name="today_txtview_label">Today</string>
-    <string name="upcoming_txtview_label">Upcoming</string>
+    <string name="tommorrow_txtview_label">TOMORROW</string>
+    <string name="today_txtview_label">TODAY</string>
+    <string name="upcoming_txtview_label">UPCOMING</string>
     <string name="tasks_tab_label">TASKS</string>
     <string name="weekly_tasks_tab_label">WEEK</string>
     <string name="calendar_tasks_tab_label">CALENDAR</string>
+    <string name="monday">MONDAY</string>
+    <string name="tuesday">TUESDAY</string>
+    <string name="wednesday">WEDNESDAY</string>
+    <string name="thursday">THURSDAY</string>
+    <string name="friday">FRIDAY</string>
+    <string name="saturday">SATURDAY</string>
+    <string name="sunday">SUNDAY</string>
+    <string name="default_txtview">default Text</string>
 </resources>
