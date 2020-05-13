@@ -7,4 +7,7 @@
     <dimen name="timeToCompleteTextHeight">24dp</dimen>
     <dimen name="subItemButtonWidth">46dp</dimen>
     <dimen name="subItemButtonHeight">46dp</dimen>
+    <dimen name="timeButtonLayoutHeight">46dp</dimen>
+    <dimen name="timeButtonHeight">46dp</dimen>
+
 </resources>

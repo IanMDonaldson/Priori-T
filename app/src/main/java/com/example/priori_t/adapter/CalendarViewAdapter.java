@@ -1,4 +1,4 @@
-package com.example.priori_t;
+package com.example.priori_t.adapter;
 
 import android.view.View;
 import android.view.ViewGroup;

@@ -1,12 +1,10 @@
-package com.example.priori_t;
+package com.example.priori_t.adapter;
 
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.google.android.material.textview.MaterialTextView;
 
 public class WeekViewAdapter extends RecyclerView.Adapter<WeekViewAdapter.WeekViewHolder> {
     public static class WeekViewHolder extends RecyclerView.ViewHolder {

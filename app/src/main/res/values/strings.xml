@@ -14,4 +14,5 @@
     <string name="saturday">SATURDAY</string>
     <string name="sunday">SUNDAY</string>
     <string name="default_txtview">default Text</string>
+    <string name="when_due">WHEN IS IT DUE?</string>
 </resources>
