@@ -1,6 +1,5 @@
-package com.example.priori_t.fragment;
+package com.example.priori_t.ui;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,15 +10,14 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Lifecycle;
 
 import com.example.priori_t.R;
-import com.example.priori_t.model.Task;
+import com.example.priori_t.database.entity.TaskEntity;
 
 public class DueDayPickerFragment extends Fragment {
     private onDueDayBtnListener listener;
     public abstract interface onDueDayBtnListener{
-        void onButtonClicked(Task task);
+        void onButtonClicked(TaskEntity taskEntity);
     }
 
     @Nullable

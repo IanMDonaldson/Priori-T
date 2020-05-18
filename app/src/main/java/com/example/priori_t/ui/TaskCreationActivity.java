@@ -1,4 +1,4 @@
-package com.example.priori_t;
+package com.example.priori_t.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,13 +7,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.priori_t.fragment.DueDayPickerFragment;
-import com.example.priori_t.model.Task;
+import com.example.priori_t.FragmentChangeListener;
+import com.example.priori_t.R;
+import com.example.priori_t.ui.DueDayPickerFragment;
+import com.example.priori_t.database.entity.TaskEntity;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class TaskCreationActivity extends AppCompatActivity implements FragmentChangeListener, DueDayPickerFragment.onDueDayBtnListener {
     public static final String EXTRA_TODO = "default";
-    public Task task;
+    public TaskEntity taskEntity;
     @Override
     protected void onCreate(Bundle savedStateInstance) {
         super.onCreate(savedStateInstance);
@@ -24,23 +26,23 @@ public class TaskCreationActivity extends AppCompatActivity implements FragmentC
         ft.commit();
     }
 
-    public void onDueDateQuestionClicked() {
+    /*public void onDueDateQuestionClicked() {
         TextInputEditText todoInput = findViewById(R.id.editTextTodoInsert);
-        this.task = new Task();
-        this.task.todo = (todoInput.getText().toString());
+        this.taskEntity = new TaskEntity();
+        this.taskEntity.todo = (todoInput.getText().toString());
         Intent intent = new Intent(this, DueDayPickerFragment.class);
-        intent.putExtra(EXTRA_TODO, task.todo);
-    }
+        intent.putExtra(EXTRA_TODO, taskEntity.todo);
+    }*/
     @Override
     public void replaceFragment(Fragment fragment) {
 
     }
-    public Task getTask() {
-        return this.task;
+    public TaskEntity getTaskEntity() {
+        return this.taskEntity;
     }
 
     @Override
-    public void onButtonClicked(Task task) {
+    public void onButtonClicked(TaskEntity taskEntity) {
 
     }
 }

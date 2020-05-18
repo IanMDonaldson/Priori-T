@@ -1,20 +1,18 @@
 package com.example.priori_t;
 
-import android.content.ClipData;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.priori_t.model.Task;
+import com.example.priori_t.database.entity.TaskEntity;
 
 public class SharedViewModel extends ViewModel {
-    private final MutableLiveData<Task> taskMutableLiveData = new MutableLiveData<Task>();
+    private final MutableLiveData<TaskEntity> taskMutableLiveData = new MutableLiveData<TaskEntity>();
 
-    public void onSelect(Task task) {
-        taskMutableLiveData.setValue(task);
+    public void onSelect(TaskEntity taskEntity) {
+        taskMutableLiveData.setValue(taskEntity);
     }
-    public LiveData<Task> getSelected() {
+    public LiveData<TaskEntity> getSelected() {
         return taskMutableLiveData;
     }
 }
