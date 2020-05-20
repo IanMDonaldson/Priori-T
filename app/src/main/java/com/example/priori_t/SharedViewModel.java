@@ -4,15 +4,15 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.priori_t.database.entity.TaskEntity;
+import com.example.priori_t.model.database.entity.Task;
 
 public class SharedViewModel extends ViewModel {
-    private final MutableLiveData<TaskEntity> taskMutableLiveData = new MutableLiveData<TaskEntity>();
+    private final MutableLiveData<Task> taskMutableLiveData = new MutableLiveData<Task>();
 
-    public void onSelect(TaskEntity taskEntity) {
-        taskMutableLiveData.setValue(taskEntity);
+    public void onSelect(Task task) {
+        taskMutableLiveData.setValue(task);
     }
-    public LiveData<TaskEntity> getSelected() {
+    public LiveData<Task> getSelected() {
         return taskMutableLiveData;
     }
 }

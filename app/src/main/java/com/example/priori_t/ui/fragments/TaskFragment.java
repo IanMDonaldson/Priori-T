@@ -1,4 +1,4 @@
-package com.example.priori_t.ui;
+package com.example.priori_t.ui.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

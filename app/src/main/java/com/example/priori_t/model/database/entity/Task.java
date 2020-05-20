@@ -1,4 +1,4 @@
-package com.example.priori_t.database.entity;
+package com.example.priori_t.model.database.entity;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
@@ -7,12 +7,10 @@ import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
-import com.example.priori_t.database.converter.DateConverter;
-import com.example.priori_t.model.Task;
+import com.example.priori_t.model.database.converter.DateConverter;
 
 @Entity(tableName = "tasks")
-public class TaskEntity implements Task {
-    @NonNull
+public class Task {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "taskId")
     private int taskId;
@@ -27,32 +25,28 @@ public class TaskEntity implements Task {
     @ColumnInfo(name = "minToComplete")
     private int minToComplete;
 
-    public TaskEntity() {
+    public Task() {
     }
     @Ignore
-    public TaskEntity(int id, String todo, String dueDate, int mtc) {
+    public Task(int id, String todo, String dueDate, int mtc) {
         this.taskId = id;
         this.taskTodo = todo;
         this.dueDate = dueDate;
         this.minToComplete = mtc;
     }
     /*############### GETTERS ######################*/
-    @Override
     public int getTaskId() {
         return this.taskId;
     }
 
-    @Override
     public String getTaskTodo() {
         return this.taskTodo;
     }
 
-    @Override
     public String getDueDate() {
         return this.dueDate;
     }
 
-    @Override
     public int getMinToComplete() {
         return this.minToComplete;
     }

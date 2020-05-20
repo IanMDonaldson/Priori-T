@@ -1,4 +1,4 @@
-package com.example.priori_t.ui;
+package com.example.priori_t.ui.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -9,15 +9,14 @@ import android.os.Bundle;
 
 import com.example.priori_t.R;
 import com.example.priori_t.adapter.ViewPagerAdapter;
-import com.example.priori_t.database.entity.TaskEntity;
-import com.example.priori_t.database.TaskDB;
-import com.example.priori_t.database.TaskGenerator;
+import com.example.priori_t.model.database.entity.Task;
+import com.example.priori_t.model.database.TaskDB;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    public List<TaskEntity> taskEntities;
+    public List<Task> taskEntities;
     private ViewPager2 viewPager;
     private ViewPagerAdapter pageAdapter;
     private TabLayout tabLayout;
@@ -37,10 +36,6 @@ public class MainActivity extends AppCompatActivity {
                 getApplicationContext(),
                 TaskDB.class,
                 "task-database").build();
-         List<TaskEntity> taskEntityList = TaskGenerator.getTaskDataSet(5);
-         for (int i = 0; i < taskEntityList.size(); i++ ) {
-             db.getTaskDao().addTask(taskEntityList.get(i));
-         }
 //        final TextInputEditText todo = findViewById(R.id.todo);
 //        final TextInputEditText due = findViewById(R.id.due);
 //        final TextInputEditText ttc = findViewById(R.id.ttc);

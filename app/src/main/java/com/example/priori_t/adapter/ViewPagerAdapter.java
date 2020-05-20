@@ -5,9 +5,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.example.priori_t.ui.CalendarFragment;
-import com.example.priori_t.ui.TaskFragment;
-import com.example.priori_t.ui.WeekFragment;
+import com.example.priori_t.ui.fragments.CalendarFragment;
+import com.example.priori_t.ui.fragments.TaskFragment;
+import com.example.priori_t.ui.fragments.WeekFragment;
 
 import java.util.ArrayList;
 import java.util.List;

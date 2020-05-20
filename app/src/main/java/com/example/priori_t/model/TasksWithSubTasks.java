@@ -3,15 +3,16 @@ package com.example.priori_t.model;
 import androidx.room.Embedded;
 import androidx.room.Relation;
 
-import com.example.priori_t.database.entity.SubTaskEntity;
-import com.example.priori_t.database.entity.TaskEntity;
+import com.example.priori_t.model.database.entity.SubTask;
+import com.example.priori_t.model.database.entity.Task;
 
 import java.util.List;
 
 public class TasksWithSubTasks {
-    @Embedded public TaskEntity taskEntity;
+    @Embedded public Task task;
     @Relation(
-            parentColumn = "task_id",
-            entityColumn = "parent_task_id")
-    public List<SubTaskEntity> subTaskEntities;
+            parentColumn = "taskId",
+            entityColumn = "parentTaskId",
+            entity = SubTask.class)
+    public List<SubTask> subTasks;
 }

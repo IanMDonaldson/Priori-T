@@ -1,6 +1,5 @@
-package com.example.priori_t.ui;
+package com.example.priori_t.ui.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,13 +8,12 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.priori_t.FragmentChangeListener;
 import com.example.priori_t.R;
-import com.example.priori_t.ui.DueDayPickerFragment;
-import com.example.priori_t.database.entity.TaskEntity;
-import com.google.android.material.textfield.TextInputEditText;
+import com.example.priori_t.model.database.entity.Task;
+import com.example.priori_t.ui.fragments.DueDayPickerFragment;
 
 public class TaskCreationActivity extends AppCompatActivity implements FragmentChangeListener, DueDayPickerFragment.onDueDayBtnListener {
     public static final String EXTRA_TODO = "default";
-    public TaskEntity taskEntity;
+    public Task task;
     @Override
     protected void onCreate(Bundle savedStateInstance) {
         super.onCreate(savedStateInstance);
@@ -37,12 +35,12 @@ public class TaskCreationActivity extends AppCompatActivity implements FragmentC
     public void replaceFragment(Fragment fragment) {
 
     }
-    public TaskEntity getTaskEntity() {
-        return this.taskEntity;
+    public Task getTask() {
+        return this.task;
     }
 
     @Override
-    public void onButtonClicked(TaskEntity taskEntity) {
+    public void onButtonClicked(Task task) {
 
     }
 }

@@ -1,12 +1,13 @@
-package com.example.priori_t.database.dao;
+package com.example.priori_t.model.database.dao;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Transaction;
 
-import com.example.priori_t.database.entity.TaskEntity;
+import com.example.priori_t.model.database.entity.Task;
 import com.example.priori_t.model.TasksWithSubTasks;
 
 import java.util.List;
@@ -16,18 +17,21 @@ import static androidx.room.OnConflictStrategy.IGNORE;
 @Dao
 public interface TaskDao {
     @Query("SELECT * from tasks")
-    MutableLiveData<List<TaskEntity>> getAllTasks();
+    public List<TasksWithSubTasks> getAllTasks();
 
     @Transaction
     @Query("SELECT * FROM tasks")
-    MutableLiveData<TasksWithSubTasks> getTasksAndSubTasks();
+    public List<TasksWithSubTasks> getTasksAndSubTasks();
 
     @Query("SELECT * from tasks WHERE taskId = :taskId")
-    MutableLiveData<TaskEntity> getTask(int taskId);
+    public Task getTask(int taskId);
 
     @Insert(onConflict = IGNORE)
-    public void addTask(TaskEntity taskEntity);
+    public void addTask(Task task);
 
     @Query("DELETE FROM tasks where taskId = :id")
     public void deleteTask(int id);
+
+    @Query("DELETE FROM tasks")
+    public void nukeTable();
 }

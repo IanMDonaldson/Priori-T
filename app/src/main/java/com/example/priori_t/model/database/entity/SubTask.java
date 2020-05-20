@@ -1,4 +1,4 @@
-package com.example.priori_t.database.entity;
+package com.example.priori_t.model.database.entity;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
@@ -7,17 +7,17 @@ import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
-import com.example.priori_t.database.converter.DateConverter;
-import com.example.priori_t.model.SubTask;
-
-import java.util.Date;
+import com.example.priori_t.model.database.converter.DateConverter;
 
 @Entity(tableName = "subtasks")
-public class SubTaskEntity implements SubTask {
+public class SubTask {
     @NonNull
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "subTaskId")
     private int subTaskId;
+
+    @ColumnInfo(name = "parentTaskId")
+    private int parentTaskId;
 
     @ColumnInfo(name = "subTaskTodo")
     private String subTaskTodo;
@@ -29,19 +29,21 @@ public class SubTaskEntity implements SubTask {
     @ColumnInfo(name = "minToComplete")
     private int minToComplete;
 
-    public SubTaskEntity() {
+    public SubTask() {
     }
     @Ignore
-    public SubTaskEntity(int id, String todo, String dueDate, int mtc) {
+    public SubTask(int id, String todo, String dueDate, int mtc) {
         this.subTaskId = id;
         this.subTaskTodo = todo;
         this.subTaskDueDate = dueDate;
         this.minToComplete = mtc;
     }
-
+//##################--- SETTERS ---########################
     public void setSubTaskId(int subTaskId) {
         this.subTaskId = subTaskId;
     }
+
+    public void setParentTaskId(int parentTaskId) { this.parentTaskId = parentTaskId; }
 
     public void setSubTaskTodo(String subTaskTodo) {
         this.subTaskTodo = subTaskTodo;
@@ -54,23 +56,21 @@ public class SubTaskEntity implements SubTask {
     public void setMinToComplete(int minToComplete) {
         this.minToComplete = minToComplete;
     }
-
-    @Override
+//###################---- GETTERS ---###################
     public int getSubTaskId() {
         return this.subTaskId;
     }
 
-    @Override
+    public int getParentTaskId() { return this.parentTaskId; }
+
     public String getSubTaskTodo() {
         return this.subTaskTodo;
     }
 
-    @Override
     public String getSubTaskDueDate() {
         return this.subTaskDueDate;
     }
 
-    @Override
     public int getMinToComplete() {
         return this.minToComplete;
     }

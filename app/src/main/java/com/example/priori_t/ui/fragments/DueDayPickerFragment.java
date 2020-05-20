@@ -1,4 +1,4 @@
-package com.example.priori_t.ui;
+package com.example.priori_t.ui.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -12,12 +12,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.priori_t.R;
-import com.example.priori_t.database.entity.TaskEntity;
+import com.example.priori_t.model.database.entity.Task;
 
 public class DueDayPickerFragment extends Fragment {
     private onDueDayBtnListener listener;
     public abstract interface onDueDayBtnListener{
-        void onButtonClicked(TaskEntity taskEntity);
+        void onButtonClicked(Task task);
     }
 
     @Nullable
