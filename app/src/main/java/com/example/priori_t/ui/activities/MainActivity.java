@@ -8,7 +8,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.os.Bundle;
 
 import com.example.priori_t.R;
-import com.example.priori_t.adapter.ViewPagerAdapter;
+import com.example.priori_t.ui.adapter.ViewPagerAdapter;
 import com.example.priori_t.model.database.entity.Task;
 import com.example.priori_t.model.database.TaskDB;
 import com.google.android.material.tabs.TabLayout;

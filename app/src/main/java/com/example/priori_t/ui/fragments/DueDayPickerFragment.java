@@ -16,7 +16,7 @@ import com.example.priori_t.model.database.entity.Task;
 
 public class DueDayPickerFragment extends Fragment {
     private onDueDayBtnListener listener;
-    public abstract interface onDueDayBtnListener{
+    public interface onDueDayBtnListener{
         void onButtonClicked(Task task);
     }
 

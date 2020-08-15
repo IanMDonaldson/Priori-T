@@ -10,20 +10,22 @@ import androidx.room.Update;
 
 import com.example.priori_t.model.database.entity.SubTask;
 
+import java.util.List;
+
 @Dao
 public interface SubTaskDao {
     @Query("SELECT * from subtasks")
-    public LiveData<SubTask> getAllSubTasks();
+    List<SubTask> getAllSubTasks();
 
     @Query("SELECT * FROM subtasks WHERE subTaskId == :id")
-    public SubTask getSubTask(int id);
+    SubTask getSubTask(int id);
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    public void addSubtask(SubTask subTask);
+    void addSubTask(SubTask subTask);
 
     @Delete
-    public void deleteSubtask(SubTask subTask);
+    void deleteSubTask(SubTask subTask);
 
     @Update
-    public void updateSubtask(SubTask subTask);
+    void updateSubTask(SubTask subTask);
 }

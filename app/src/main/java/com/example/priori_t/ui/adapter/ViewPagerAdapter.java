@@ -1,4 +1,4 @@
-package com.example.priori_t.adapter;
+package com.example.priori_t.ui.adapter;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
