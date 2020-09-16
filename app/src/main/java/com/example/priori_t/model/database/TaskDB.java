@@ -18,34 +18,13 @@ import com.example.priori_t.model.database.entity.Task;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(version=1,entities={Task.class, SubTask.class}, exportSchema = false)
+@Database(version = 1, entities = {Task.class, SubTask.class}, exportSchema = false)
 @TypeConverters(DateConverter.class)
 public abstract class TaskDB extends RoomDatabase {
-    public static final String DATABASE_NAME="TaskDB";
+    public static final String DATABASE_NAME = "TaskDB";
     private static final int THREAD_COUNT = 2;
-
-    public abstract TaskDao getTaskDao();
-    public abstract SubTaskDao getSubTaskDao();
-
-    private static volatile TaskDB taskDBInstance;
-
     static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(THREAD_COUNT);
-
-    static TaskDB getDatabase(final Context context) {
-        if (taskDBInstance == null) {
-            synchronized (TaskDB.class) {
-                taskDBInstance = Room.databaseBuilder(context.getApplicationContext(),
-                        TaskDB.class, DATABASE_NAME)
-                        .build();
-            }
-
-        }
-        return taskDBInstance;
-    }
-    public static void destroyInstance() {
-        taskDBInstance = null;
-    }
-
+    private static volatile TaskDB taskDBInstance;
     private static TaskDB.Callback taskDBCallback = new TaskDB.Callback() {
         @Override
         public void onOpen(@NonNull SupportSQLiteDatabase db) {
@@ -60,4 +39,24 @@ public abstract class TaskDB extends RoomDatabase {
             });
         }
     };
+
+    static TaskDB getDatabase(final Context context) {
+        if (taskDBInstance == null) {
+            synchronized (TaskDB.class) {
+                taskDBInstance = Room.databaseBuilder(context.getApplicationContext(),
+                        TaskDB.class, DATABASE_NAME)
+                        .build();
+            }
+
+        }
+        return taskDBInstance;
+    }
+
+    public static void destroyInstance() {
+        taskDBInstance = null;
+    }
+
+    public abstract TaskDao getTaskDao();
+
+    public abstract SubTaskDao getSubTaskDao();
 }
