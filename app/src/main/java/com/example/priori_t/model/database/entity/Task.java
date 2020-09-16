@@ -1,6 +1,5 @@
 package com.example.priori_t.model.database.entity;
 
-import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
@@ -9,34 +8,34 @@ import androidx.room.TypeConverters;
 
 import com.example.priori_t.model.database.converter.DateConverter;
 
-@Entity(tableName = "tasks")
+@Entity
 public class Task {
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "taskId")
-    private int taskId;
+    @ColumnInfo(name = "task_id")
+    private int taskID;
 
-    @ColumnInfo(name = "taskTodo")
+    @ColumnInfo(name = "task_todo")
     private String taskTodo;
 
-    @ColumnInfo(name = "dueDate")
+    @ColumnInfo(name = "due_date")
     @TypeConverters(DateConverter.class)
     private String dueDate;
 
-    @ColumnInfo(name = "minToComplete")
+    @ColumnInfo(name = "min_to_complete")
     private int minToComplete;
 
     public Task() {
     }
     @Ignore
     public Task(int id, String todo, String dueDate, int mtc) {
-        this.taskId = id;
+        this.taskID = id;
         this.taskTodo = todo;
         this.dueDate = dueDate;
         this.minToComplete = mtc;
     }
     /*############### GETTERS ######################*/
-    public int getTaskId() {
-        return this.taskId;
+    public int getTaskID() {
+        return this.taskID;
     }
 
     public String getTaskTodo() {
@@ -51,8 +50,8 @@ public class Task {
         return this.minToComplete;
     }
     /*###############3### SETTERS ####################*/
-    public void setTaskId(int taskId) {
-        this.taskId = taskId;
+    public void setTaskID(int taskID) {
+        this.taskID = taskID;
     }
 
     public void setTaskTodo(String taskTodo) {
