@@ -9,7 +9,6 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.priori_t.FragmentChangeListener;
 import com.example.priori_t.R;
 import com.example.priori_t.model.database.entity.Task;
-import com.example.priori_t.ui.fragments.DueDayPickerFragment;
 
 public class TaskCreationActivity extends AppCompatActivity implements FragmentChangeListener, DueDayPickerFragment.onDueDayBtnListener {
     public static final String EXTRA_TODO = "default";

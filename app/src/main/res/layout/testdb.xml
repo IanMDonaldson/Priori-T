@@ -14,28 +14,28 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/todo"
             android:layout_width="match_parent"
-            android:layout_height="40dp">
+            android:layout_height="55dp">
 
         </com.google.android.material.textfield.TextInputEditText>
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/due"
             android:layout_width="match_parent"
-            android:layout_height="40dp">
+            android:layout_height="74dp">
 
         </com.google.android.material.textfield.TextInputEditText>
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/ttc"
             android:layout_width="match_parent"
-            android:layout_height="40dp">
+            android:layout_height="79dp">
 
         </com.google.android.material.textfield.TextInputEditText>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/send"
             android:layout_width="match_parent"
-            android:layout_height="40dp">
+            android:layout_height="70dp">
 
         </com.google.android.material.button.MaterialButton>
 

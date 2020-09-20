@@ -3,38 +3,47 @@ package com.example.priori_t.model.database.entity;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
 import com.example.priori_t.model.database.converter.DateConverter;
 
+import static androidx.room.ForeignKey.CASCADE;
+
 @Entity
 public class Subtask {
     @NonNull
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "subtask_id")
+    @ColumnInfo(name="subtask_id")
     private int subtaskID;
 
-    @ColumnInfo(name = "task_id")
+    @ForeignKey(
+            entity = Task.class,
+            parentColumns = "taskID",
+            childColumns = "taskID",
+            onDelete = CASCADE,
+            onUpdate = CASCADE
+    )
+    @ColumnInfo(name="task_id")
     private int taskID;
 
-    @ColumnInfo(name = "subtask_todo")
+    @ColumnInfo(name="subtask_todo")
     private String subtaskTodo;
 
-    @ColumnInfo(name = "subtask_due_date")
     @TypeConverters(DateConverter.class)
-    private String subtaskDueDate;
+    @ColumnInfo(name="subtask_due_date")
+    private long subtaskDueDate;
 
-    @ColumnInfo(name = "min_to_complete")
+    @ColumnInfo(name="subtask_mtc")
     private int minToComplete;
 
     public Subtask() {
     }
     @Ignore
-    public Subtask(int id, String todo, String dueDate, int mtc) {
-        this.subtaskID = id;
-        this.subTaskTodo = todo;
+    public Subtask(String todo, long dueDate, int mtc) {
+        this.subtaskTodo = todo;
         this.subtaskDueDate = dueDate;
         this.minToComplete = mtc;
     }
@@ -46,10 +55,10 @@ public class Subtask {
     public void setTaskID(int taskID) { this.taskID = taskID; }
 
     public void setSubtaskTodo(String subtaskTodo) {
-        this.subTaskTodo = subTaskTodo;
+        this.subtaskTodo = subtaskTodo;
     }
 
-    public void setSubtaskDueDate(String subtaskDueDate) {
+    public void setSubtaskDueDate(long subtaskDueDate) {
         this.subtaskDueDate = subtaskDueDate;
     }
 
@@ -64,10 +73,10 @@ public class Subtask {
     public int getTaskID() { return this.taskID; }
 
     public String getSubtaskTodo() {
-        return this.subTaskTodo;
+        return this.subtaskTodo;
     }
 
-    public String getSubtaskDueDate() {
+    public long getSubtaskDueDate() {
         return this.subtaskDueDate;
     }
 

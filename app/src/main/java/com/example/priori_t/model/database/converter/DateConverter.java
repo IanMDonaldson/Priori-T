@@ -11,7 +11,7 @@ import java.time.temporal.TemporalAccessor;
 import kotlin.jvm.JvmStatic;
 
 public class DateConverter {
-    private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmm");
+    private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY-mm-dd HH:MM");
     private static LocalDateTime ldc;
 
     @TypeConverter

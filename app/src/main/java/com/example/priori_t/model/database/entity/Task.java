@@ -8,62 +8,90 @@ import androidx.room.TypeConverters;
 
 import com.example.priori_t.model.database.converter.DateConverter;
 
+import java.util.List;
+
 @Entity
 public class Task {
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "task_id")
-    private int taskID;
+    @ColumnInfo(name="id")
+    private int id;
 
-    @ColumnInfo(name = "task_todo")
-    private String taskTodo;
+    @ColumnInfo(name="todo")
+    private String todo;
 
-    @ColumnInfo(name = "due_date")
+
     @TypeConverters(DateConverter.class)
-    private String dueDate;
+    @ColumnInfo(name="due_date")
+    private long dueDate;
 
-    @ColumnInfo(name = "min_to_complete")
+    @ColumnInfo(name="min_to_complete")
     private int minToComplete;
+
+    @Ignore
+    private List<Subtask> subtasks;
 
     public Task() {
     }
+
     @Ignore
-    public Task(int id, String todo, String dueDate, int mtc) {
-        this.taskID = id;
-        this.taskTodo = todo;
+    public Task(String todo, long dueDate, int mtc) {
+        this.todo = todo;
         this.dueDate = dueDate;
         this.minToComplete = mtc;
     }
+    @Ignore
+    public Task(String todo, long dueDate, int mtc, List<Subtask> subtasks) {
+        this.todo = todo;
+        this.dueDate = dueDate;
+        this.minToComplete = mtc;
+        this.subtasks = subtasks;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "id= " + id + '\n' +
+                ", dueDate= " + dueDate + '\n' +
+                ", timeToComplete= " + minToComplete + '\n' +
+                ", subtaskCount = " + subtasks.size();
+    }
     /*############### GETTERS ######################*/
+
     public int getTaskID() {
-        return this.taskID;
+        return this.id;
     }
 
     public String getTaskTodo() {
-        return this.taskTodo;
+        return this.todo;
     }
 
-    public String getDueDate() {
+    public long getDueDate() {
         return this.dueDate;
     }
 
     public int getMinToComplete() {
         return this.minToComplete;
     }
+
+    public List<Subtask> getSubtasks() { return this.subtasks; }
     /*###############3### SETTERS ####################*/
     public void setTaskID(int taskID) {
-        this.taskID = taskID;
+        this.id = taskID;
     }
 
     public void setTaskTodo(String taskTodo) {
-        this.taskTodo = taskTodo;
+        this.todo = taskTodo;
     }
 
-    public void setDueDate(String dueDate) {
+    public void setDueDate(long dueDate) {
         this.dueDate = dueDate;
     }
 
     public void setMinToComplete(int minToComplete) {
         this.minToComplete = minToComplete;
     }
+
+    public void setSubtasks(List<Subtask> subtasks) { this.subtasks = subtasks; }
 }
 

@@ -2,7 +2,12 @@ package com.example.priori_t.model.database;
 
 import android.app.Application;
 
-import com.example.priori_t.model.TasksWithSubtasks;
+import androidx.annotation.NonNull;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
+
+import com.example.priori_t.model.database.dao.SubtaskDao;
 import com.example.priori_t.model.database.dao.TaskDao;
 import com.example.priori_t.model.database.entity.Task;
 
@@ -10,20 +15,28 @@ import java.util.List;
 
 public class TaskRepository {
     private TaskDao taskDao;
-    private List<TasksWithSubtasks> allTasks;
-    TaskRepository(Application app) {
+    private SubtaskDao subtaskDao;
+    private LiveData<List<Task>> tasks;
+    public TaskRepository(Application app) {
         TaskDB db = TaskDB.getDatabase(app);
-        taskDao = db.getTaskDao();
-        allTasks = taskDao.getAllTasks();
+        this.tasks = getAllTasksAndSubtasks(db);
     }
 
-    List<TasksWithSubtasks> getAllTasks() {
-        return allTasks;
+    public LiveData<List<Task>> getAllTasksAndSubtasks(TaskDB db) {
+        LiveData<List<Task>> taskList = db.getTaskDao().getAllTasks();
+        taskList.getValue().forEach(task -> {
+            task.setSubtasks(db.getSubtaskDao().getSubtasksForTask(task.getTaskID()));
+        });
+        return taskList;
     }
 
-    void insert(Task task) {
+
+    public void insert(Task task) {
         TaskDB.databaseWriteExecutor.execute(() -> {
-
+            taskDao.addTask(task);
+            task.getSubtasks().forEach(subtask -> {
+                subtaskDao.insertSubtask(subtask);
+            });
         });
     }
 }
