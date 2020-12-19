@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <!--TODO: get drawable for edit button-->
+
+    <com.google.android.material.checkbox.MaterialCheckBox
+        android:id="@+id/task_complete_checkbox"
+        android:layout_width="37dp"
+        android:layout_height="52dp"
+        android:text="@string/shutup"
+        app:layout_constraintBottom_toTopOf="@+id/middle_guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"/>
+
+    <ImageView
+        android:id="@+id/ttc_clock_imageview"
+        android:layout_width="103dp"
+        android:layout_height="23dp"
+        android:contentDescription="@string/shutup"
+        android:scaleType="fitCenter"
+        android:tint="@color/color_primary"
+        app:layout_constraintBottom_toTopOf="@+id/ttc_textview"
+        app:layout_constraintStart_toEndOf="@+id/task_complete_checkbox"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_access_time_24"
+        tools:srcCompat="@drawable/ic_baseline_access_time_24"/>
+
+    <ImageButton
+        android:id="@+id/create_subtask_button"
+        android:layout_width="58dp"
+        android:layout_height="50dp"
+        android:contentDescription="@string/subtask_create"
+        android:foregroundTint="#FFFFFF"
+        android:tint="@color/textcolor_primary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/add_subtask_24"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/ttc_textview"
+        android:layout_width="104dp"
+        android:layout_height="27dp"
+        android:text="@string/default_txtview"
+        android:textAlignment="textStart"
+        app:layout_constraintBottom_toTopOf="@+id/middle_guideline"
+        app:layout_constraintStart_toEndOf="@+id/task_complete_checkbox"/>
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/task_description_textview"
+        android:layout_width="410dp"
+        android:layout_height="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/middle_guideline"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/middle_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="50dp" />
+
+    <ImageButton
+        android:id="@+id/edit_task_button"
+        android:layout_width="54dp"
+        android:layout_height="51dp"
+        android:contentDescription="@string/shutup"
+        android:tint="@color/color_blue"
+        app:layout_constraintBottom_toTopOf="@+id/middle_guideline"
+        app:layout_constraintEnd_toStartOf="@+id/create_subtask_button"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/ttc_clock_imageview"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/edit24" />
+
+    <ImageView
+        android:id="@+id/task_due_date_imageview"
+        android:layout_width="156dp"
+        android:layout_height="21dp"
+        android:contentDescription="@string/shutup"
+        android:tint="@color/due_date_textcolor"
+        app:layout_constraintEnd_toStartOf="@+id/edit_task_button"
+        app:layout_constraintHorizontal_bias="0.588"
+        app:layout_constraintStart_toEndOf="@+id/ttc_clock_imageview"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/due_date_24" />
+
+    <TextView
+        android:id="@+id/task_due_date_textview"
+        android:layout_width="163dp"
+        android:layout_height="29dp"
+        android:text="@string/shutup"
+        android:textAlignment="textStart"
+        app:layout_constraintBottom_toTopOf="@+id/middle_guideline"
+        app:layout_constraintEnd_toStartOf="@+id/edit_task_button"
+        app:layout_constraintStart_toEndOf="@+id/ttc_textview"
+        app:layout_constraintTop_toBottomOf="@+id/task_due_date_imageview" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

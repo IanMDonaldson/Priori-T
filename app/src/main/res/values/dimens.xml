@@ -9,5 +9,6 @@
     <dimen name="subItemButtonHeight">46dp</dimen>
     <dimen name="timeButtonLayoutHeight">46dp</dimen>
     <dimen name="timeButtonHeight">46dp</dimen>
-
+    <dimen name="dayTextViewHeight">32dp</dimen>
+    <dimen name="dayFontSize">20sp</dimen>
 </resources>

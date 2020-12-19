@@ -4,7 +4,7 @@
     <string name="today_txtview_label">TODAY</string>
     <string name="upcoming_txtview_label">UPCOMING</string>
     <string name="tasks_tab_label">TASKS</string>
-    <string name="weekly_tasks_tab_label">WEEK</string>
+
     <string name="calendar_tasks_tab_label">CALENDAR</string>
     <string name="monday">MONDAY</string>
     <string name="tuesday">TUESDAY</string>
@@ -14,5 +14,9 @@
     <string name="saturday">SATURDAY</string>
     <string name="sunday">SUNDAY</string>
     <string name="default_txtview">default Text</string>
+    <string name="shutup"></string>
     <string name="when_due">WHEN IS IT DUE?</string>
+    <string name="subtask_create">subtaskCreate</string>
+    <string name="ttc_desc">is the time to complete</string>
+    <string name="edit_desc">is the edit button/textview</string>
 </resources>

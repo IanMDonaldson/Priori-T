@@ -8,7 +8,8 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/checkBoxHeight"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+    app:layout_constraintStart_toStartOf="parent">
+        <!--TODO: time to complete fragment-->
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonCustomTime"
