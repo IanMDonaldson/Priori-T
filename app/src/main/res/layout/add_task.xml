@@ -35,8 +35,8 @@
             android:id="@+id/due_date_question_button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/when_due"
-            android:onClick="onDueDateQuestionClicked"/>
+            android:text="@string/when_due"/>
+            <!--android:onClick="onDueDateQuestionClicked"-->
     </FrameLayout>
 
 

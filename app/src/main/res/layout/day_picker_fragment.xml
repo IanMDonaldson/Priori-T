@@ -17,7 +17,7 @@
             android:layout_gravity="center_vertical"
             app:cornerRadius="0dp"
             android:layout_weight="1"
-            android:textColor="@color/textColorPrimary"
+            android:textColor="@color/textcolor_primary"
             android:text="@string/default_txtview"
             />
 
@@ -28,7 +28,7 @@
             android:layout_gravity="center_vertical"
             app:cornerRadius="0dp"
             android:layout_weight="1"
-            android:textColor="@color/textColorPrimary"
+            android:textColor="@color/textcolor_primary"
             android:text="@string/default_txtview"
             />
 
@@ -39,7 +39,7 @@
             android:layout_gravity="center_vertical"
             app:cornerRadius="0dp"
             android:layout_weight="1"
-            android:textColor="@color/textColorPrimary"
+            android:textColor="@color/textcolor_primary"
             android:text="@string/default_txtview"
             />
 
@@ -50,7 +50,7 @@
             android:layout_gravity="center_vertical"
             app:cornerRadius="0dp"
             android:layout_weight="1"
-            android:textColor="@color/textColorPrimary"
+            android:textColor="@color/textcolor_primary"
             android:text="@string/default_txtview"
             />
 

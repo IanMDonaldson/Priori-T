@@ -38,6 +38,7 @@ public class TaskRepository {
                                                        LiveData<List<Subtask>> subtasks,
                                                        TaskDB taskDB) {
         tasks = taskDB.getTaskDao().getAllTasks();
+        return tasks;
         
     }
     public LiveData<List<Task>> getAllTasksAndSubtasks(TaskDB db) {

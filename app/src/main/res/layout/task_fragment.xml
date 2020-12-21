@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -9,10 +9,16 @@
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
-</androidx.constraintlayout.widget.ConstraintLayout>-->
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 
+<!--
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -26,21 +32,22 @@
         android:id="@+id/dayTextView"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dayTextViewHeight"
-        android:backgroundTint="@color/colorPrimary"
+        android:backgroundTint="@color/color_primary"
         android:fontFamily="@font/open_sans"
         android:text="@string/default_txtview"
-        android:textColor="@color/textColorPrimary"
+        android:textColor="@color/textcolor_primary"
         android:textSize="@dimen/dayFontSize" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="162dp"
+        android:layout_height="wrap_content"
         tools:layout_editor_absoluteY="32dp">
 
         <ImageView
             android:id="@+id/timeToCompleteImage"
-            android:layout_width="@dimen/timeToCompleteWidth"
-            android:layout_height="@dimen/timeToCompleteImageHeight"
+            android:layout_width="71dp"
+            android:layout_height="24dp"
+            android:contentDescription="@string/shutup"
             android:scaleType="center"
             app:layout_constraintEnd_toStartOf="@+id/subItemButton"
             app:layout_constraintStart_toEndOf="@+id/taskCheckBox"
@@ -49,8 +56,9 @@
 
         <TextView
             android:id="@+id/timeToCompleteTextView"
-            android:layout_width="@dimen/timeToCompleteWidth"
-            android:layout_height="@dimen/timeToCompleteTextHeight"
+            android:layout_width="70dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="4dp"
             android:text="@string/default_txtview"
             app:layout_constraintEnd_toStartOf="@+id/subItemButton"
             app:layout_constraintStart_toEndOf="@+id/taskCheckBox"
@@ -60,20 +68,22 @@
             android:id="@+id/subItemButton"
             android:layout_width="@dimen/subItemButtonWidth"
             android:layout_height="@dimen/subItemButtonHeight"
+            android:contentDescription="@string/shutup"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/ic_format_list_bulleted_black_24dp" />
 
         <CheckBox
             android:id="@+id/taskCheckBox"
-            android:layout_width="@dimen/checkBoxWidth"
-            android:layout_height="@dimen/checkBoxHeight"
+            android:layout_width="284dp"
+            android:layout_height="45dp"
             android:text="@string/default_txtview"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="86dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-</LinearLayout>
+</LinearLayout>-->

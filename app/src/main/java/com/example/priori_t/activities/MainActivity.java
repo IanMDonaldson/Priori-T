@@ -12,13 +12,18 @@ import android.os.Bundle;
 
 import com.example.priori_t.R;
 
+import com.example.priori_t.model.converter.DateConverter;
+import com.example.priori_t.model.entity.Subtask;
 import com.example.priori_t.model.entity.Task;
 import com.example.priori_t.fragments.CalendarFragment;
 import com.example.priori_t.fragments.TaskFragment;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
+import java.time.ZonedDateTime;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.TimeZone;
 
 public class MainActivity extends AppCompatActivity {
     public List<Task> taskEntities;
@@ -61,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         public Fragment createFragment(int position) {
             switch (position) {
                 case 0:
-                    return new TaskFragment();
+                    return TaskFragment.newInstance(R.layout.task_fragment);
                 case 1:
                     return new CalendarFragment();
             }
@@ -73,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
             return NUM_PAGES;
         }
     }
+
 }
 
 //        tasks = db.getTaskDao().getAllTasks();

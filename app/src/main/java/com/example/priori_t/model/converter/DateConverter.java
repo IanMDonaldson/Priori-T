@@ -13,7 +13,6 @@ import java.util.TimeZone;
 public class DateConverter {
     @TypeConverter
     public static ZonedDateTime fromTimeStamp(Long val) {
-        TimeZone.getDefault();
         ZoneId zid = TimeZone.getDefault().toZoneId();
         Instant i = Instant.ofEpochSecond(val);
         return ZonedDateTime.ofInstant(i, zid);

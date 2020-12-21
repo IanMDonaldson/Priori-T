@@ -11,8 +11,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/dayTextView"
-        android:backgroundTint="@color/colorPrimary"
-        android:textColor="@color/textColorPrimary"/>
+        android:backgroundTint="@color/color_primary"
+        android:textColor="@color/textcolor_primary"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
