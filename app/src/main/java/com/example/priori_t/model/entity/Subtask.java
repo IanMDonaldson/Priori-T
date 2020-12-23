@@ -39,6 +39,8 @@ public class Subtask implements Comparable<Subtask> {
     @ColumnInfo(name="subtask_mtc")
     private int minToComplete;
 
+
+
     @ColumnInfo(name="is_subtask_complete")
     private boolean isSubtaskComplete;
 
@@ -86,6 +88,14 @@ public class Subtask implements Comparable<Subtask> {
 
     public int getMinToComplete() {
         return this.minToComplete;
+    }
+
+    public boolean isSubtaskComplete() {
+        return isSubtaskComplete;
+    }
+
+    public void setSubtaskComplete(boolean subtaskComplete) {
+        isSubtaskComplete = subtaskComplete;
     }
     @Override
     public int compareTo(Subtask o) {

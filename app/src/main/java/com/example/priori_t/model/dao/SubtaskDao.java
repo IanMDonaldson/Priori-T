@@ -23,14 +23,14 @@ public interface SubtaskDao {
 
     @Query("INSERT INTO subtask(task_id,subtask_id,subtask_todo,subtask_due_date,subtask_mtc) " +
             "VALUES(:taskID,:subtaskID,:subtaskTodo,:subtaskDueDate,:mtc)")
-    Long insertSubtask(int taskID, int subtaskID, String subtaskTodo,Long subtaskDueDate, int mtc);
+    long insertSubtask(int taskID, int subtaskID, String subtaskTodo,Long subtaskDueDate, int mtc);
 
     @Insert(onConflict = REPLACE)
-    Long insertSubtask(Subtask subtask);
+    long insertSubtask(Subtask subtask);
 
     @Update
-    Long updateSubtask(Subtask subtask);
+    int updateSubtask(Subtask subtask);
 
     @Delete
-    Long deleteSubtask(Subtask subtask);
+    int deleteSubtask(Subtask subtask);
 }

@@ -14,7 +14,7 @@ import java.util.List;
 
 public class TaskRepository {
     private static TaskRepository instance;
-
+    private TaskDB_Impl db;
     private TaskDao taskDao;
     private SubtaskDao subtaskDao;
     private MediatorLiveData<List<Task>> tasks;
@@ -41,10 +41,10 @@ public class TaskRepository {
         return tasks;
         
     }
-    public LiveData<List<Task>> getAllTasksAndSubtasks(TaskDB db) {
-        LiveData<List<Task>> taskList = db.getTaskDao().getAllTasks();
+    public LiveData<List<Task>> getAllTasksAndSubtasks() {
+        LiveData<List<Task>> taskList = this.db.getTaskDao().getAllTasks();
         taskList.getValue().forEach(task -> {
-            task.setSubtasks(db.getSubtaskDao().getSubtasksForTask(task.getTaskID()));
+            task.setSubtasks(db.getSubtaskDao().getSubtasksForTask(task.getId()));
         });
         return taskList;
     }

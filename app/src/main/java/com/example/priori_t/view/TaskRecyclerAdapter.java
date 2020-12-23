@@ -30,7 +30,7 @@ public class TaskRecyclerAdapter extends RecyclerView.Adapter {
     private static final int DAY_VIEW = 0;
     private static final int TASK_VIEW = 1;
     private static final int SUBTASK_VIEW = 2;
-    private LiveData<List<Task>> taskList;
+    private List<Task> taskList;//TODO: SURROUND IN LIVEDATA
     private LifecycleOwner lifecycleOwner;
     private Context context;
     private DayViewHolder dayViewHolder;
@@ -39,7 +39,8 @@ public class TaskRecyclerAdapter extends RecyclerView.Adapter {
     private Task task;
     private Subtask subtask;
     private DateConverter dc = new DateConverter();
-    public TaskRecyclerAdapter(Context context, LiveData<List<Task>> taskList) {
+                                                //todo: surround in livedata
+    public TaskRecyclerAdapter(Context context, List<Task> taskList) {
         this.taskList = taskList;
         this.context = context;
         context.getApplicationContext();
@@ -66,17 +67,34 @@ public class TaskRecyclerAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-
+        switch (holder.getItemViewType()) {
+            case DAY_VIEW:
+                DayViewHolder dayViewHolder = (DayViewHolder) holder;
+                //
+                break;
+            case TASK_VIEW:
+                TaskViewHolder taskViewHolder = (TaskViewHolder) holder;
+                //
+                break;
+            case SUBTASK_VIEW:
+                SubtaskViewHolder subtaskViewHolder = (SubtaskViewHolder) holder;
+                //
+                break;
+            default:
+                break;
+        }
     }
 
     @Override
     public int getItemCount() {
 
-        return this.taskList.getValue().size();
+        //return this.taskList.getValue().size();
+        return this.taskList.size();
     }
     @Override
     public int getItemViewType(int position) {
-        DayOfWeek dayOfWeek = dc.fromTimeStamp(taskList.getValue().get(position).getDueDate()).getDayOfWeek();
+        //DayOfWeek dayOfWeek = dc.fromTimeStamp(taskList.getValue().get(position).getDueDate()).getDayOfWeek();
+        DayOfWeek dayOfWeek = dc.fromTimeStamp(taskList.get(position).getDueDate()).getDayOfWeek();
         if (dayOfWeek == DayOfWeek.SUNDAY) {}
 
 

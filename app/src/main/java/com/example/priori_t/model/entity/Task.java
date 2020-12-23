@@ -27,6 +27,7 @@ public class Task implements Comparable<Task> {
     @ColumnInfo(name="min_to_complete")
     private int minToComplete;
 
+
     @ColumnInfo(name="is_complete")
     private boolean isComplete;
 
@@ -59,15 +60,30 @@ public class Task implements Comparable<Task> {
                 ", timeToComplete= " + minToComplete + '\n' +
                 ", subtaskCount = " + subtasks.size();
     }
-    /*############### GETTERS ######################*/
-
-    public int getTaskID() {
-        return this.id;
+    public int getId() {
+        return id;
     }
 
-    public String getTaskTodo() {
-        return this.todo;
+    public void setId(int id) {
+        this.id = id;
     }
+
+    public String getTodo() {
+        return todo;
+    }
+
+    public void setTodo(String todo) {
+        this.todo = todo;
+    }
+
+    public boolean isComplete() {
+        return isComplete;
+    }
+
+    public void setComplete(boolean complete) {
+        isComplete = complete;
+    }
+
 
     public Long getDueDate() {
         return this.dueDate;
@@ -78,14 +94,6 @@ public class Task implements Comparable<Task> {
     }
 
     public List<Subtask> getSubtasks() { return this.subtasks; }
-    /*###############3### SETTERS ####################*/
-    public void setTaskID(int taskID) {
-        this.id = taskID;
-    }
-
-    public void setTaskTodo(String taskTodo) {
-        this.todo = taskTodo;
-    }
 
     public void setDueDate(Long dueDate) {
         this.dueDate = dueDate;

@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import com.example.priori_t.R;
 
 public class CalendarFragment extends Fragment {
+    //todo define click listeners here
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedStateInstance) {

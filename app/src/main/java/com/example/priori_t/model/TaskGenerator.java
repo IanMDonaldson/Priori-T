@@ -16,8 +16,8 @@ public class TaskGenerator {
         for (int i = 0; i < taskListSize; i++) {
             Task task = new Task();
             task.setMinToComplete(30);
-            task.setTaskID(i);
-            task.setTaskTodo("nothing"+i);
+            task.setId(i);
+            task.setTodo("nothing"+i);
             today.plusDays((long)i);
             task.setDueDate(DateConverter.fromZonedDateTime(today));
             List<Subtask> subtasks = new LinkedList<>();
