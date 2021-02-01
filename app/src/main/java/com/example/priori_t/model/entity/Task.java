@@ -8,10 +8,14 @@ import androidx.room.TypeConverters;
 
 import com.example.priori_t.model.converter.DateConverter;
 
+import java.io.Serializable;
+import java.time.DayOfWeek;
+import java.time.ZonedDateTime;
 import java.util.List;
 
+@SuppressWarnings("serial")
 @Entity
-public class Task implements Comparable<Task> {
+public class Task implements Comparable<Task>, Serializable {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name="id")
     private int id;
@@ -52,14 +56,14 @@ public class Task implements Comparable<Task> {
     }
 
 
-    @Override
+    /*@Override
     public String toString() {
         return "Task{" +
                 "id= " + id + '\n' +
                 ", dueDate= " + dueDate + '\n' +
                 ", timeToComplete= " + minToComplete + '\n' +
                 ", subtaskCount = " + subtasks.size();
-    }
+    }*/
     public int getId() {
         return id;
     }

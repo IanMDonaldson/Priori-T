@@ -15,8 +15,16 @@
     <string name="sunday">SUNDAY</string>
     <string name="default_txtview">default Text</string>
     <string name="shutup"></string>
-    <string name="when_due">WHEN IS IT DUE?</string>
+    <string name="button_text_day_due">Day The Task Is Due</string>
+    <string name="button_text_time_due">Time The Task Is Due</string>
+    <string name="min_to_complete_text">How Long It Will Take</string>
     <string name="subtask_create">subtaskCreate</string>
     <string name="ttc_desc">is the time to complete</string>
     <string name="edit_desc">is the edit button/textview</string>
+    <string name="task_description_header">Task Description</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="save_button_text">SAVE</string>
+    <string name="hours">Hours</string>
+    <string name="minutes">Minutes</string>
 </resources>

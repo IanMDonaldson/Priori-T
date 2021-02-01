@@ -12,12 +12,69 @@ import com.google.android.material.checkbox.MaterialCheckBox;
 import com.google.android.material.textview.MaterialTextView;
 
 public class SubtaskViewHolder extends RecyclerView.ViewHolder {
-    private MaterialCheckBox checkBox;
-    private ImageView ttcClockImageView;
-    private ImageView dueImageView;
-    private MaterialTextView ttcTxtView;
-    private MaterialTextView dueTxtView;
     private ImageButton editButton;
+    private ImageView dueImageView;
+    private ImageView ttcClockImageView;
+    private MaterialCheckBox checkBox;
+    private MaterialTextView mtcTextView;
+    private MaterialTextView subtaskDescriptionTextView;
+
+    public MaterialCheckBox getCheckBox() {
+        return this.checkBox;
+    }
+
+    public void setCheckBox(MaterialCheckBox checkBox) {
+        this.checkBox = checkBox;
+    }
+
+    public ImageView getTtcClockImageView() {
+        return this.ttcClockImageView;
+    }
+
+    public void setTtcClockImageView(ImageView ttcClockImageView) {
+        this.ttcClockImageView = ttcClockImageView;
+    }
+
+    public ImageView getDueImageView() {
+        return this.dueImageView;
+    }
+
+    public void setDueImageView(ImageView dueImageView) {
+        this.dueImageView = dueImageView;
+    }
+
+    public MaterialTextView getMtcTextView() {
+        return this.mtcTextView;
+    }
+
+    public void setMtcTextView(MaterialTextView mtcTextView) {
+        this.mtcTextView = mtcTextView;
+    }
+
+    public MaterialTextView getSubtaskDescriptionTextView() {
+        return this.subtaskDescriptionTextView;
+    }
+
+    public void setSubtaskDescriptionTextView(MaterialTextView subtaskDescriptionTextView) {
+        this.subtaskDescriptionTextView = subtaskDescriptionTextView;
+    }
+
+    public ImageButton getEditButton() {
+        return this.editButton;
+    }
+
+    public void setEditButton(ImageButton editButton) {
+        this.editButton = editButton;
+    }
+
+    public MaterialTextView getDescription() {
+        return this.description;
+    }
+
+    public void setDescription(MaterialTextView description) {
+        this.description = description;
+    }
+
     private MaterialTextView description;
 
     public SubtaskViewHolder(@NonNull View v) {
@@ -25,10 +82,8 @@ public class SubtaskViewHolder extends RecyclerView.ViewHolder {
         checkBox = v.findViewById(R.id.subtask_complete_checkbox);
         ttcClockImageView = v.findViewById(R.id.subtask_ttc_clock_imageview);
         dueImageView = v.findViewById(R.id.subtask_due_date_imageview);
-        ttcTxtView = v.findViewById(R.id.subtask_ttc_textview);
-        dueTxtView = v.findViewById(R.id.subtask_due_date_textview);
+        mtcTextView = v.findViewById(R.id.subtask_ttc_textview);
+        subtaskDescriptionTextView = v.findViewById(R.id.subtask_description_textview);
         editButton = v.findViewById(R.id.edit_subtask_button);
-        description = v.findViewById(R.id.subtask_description_textview);
-
     }
 }

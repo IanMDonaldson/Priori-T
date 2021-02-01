@@ -1,6 +1,7 @@
 package com.example.priori_t.activities;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -8,7 +9,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 
 import com.example.priori_t.R;
 
@@ -37,15 +42,18 @@ public class MainActivity extends AppCompatActivity {
     private TaskFragment taskFragment;
     private CalendarFragment calendarFragment;
     private ArrayList<Fragment> fragments;
+    private ImageButton taskAddButton;
+    static Task newTask = new Task();
 
-    //TODO: recyclerview Adapter needs to be set here
-
+     final int TASK_REQUEST = 1;
+    //TODO: recyclerview Adapter needs to be set here or..in taskFragment
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         viewPager = findViewById(R.id.viewPager);
         tabLayout = findViewById(R.id.tabLayout);
+        this.taskAddButton = findViewById(R.id.button_task_add);
 
 //        appBar = findViewById(R.id.appBar);
 //        fragments = new ArrayList<>();
@@ -60,7 +68,21 @@ public class MainActivity extends AppCompatActivity {
                     public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
                         onTabNameSet(tab,position);
                     }
-                });
+                }).attach();
+        this.taskAddButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //send data to activity handling adding task
+               onAddTaskClicked(v);
+            }
+        });
+    }
+    //sends data to activity
+    public void onAddTaskClicked(View view) {
+        Task task = new Task();
+        Intent intent = new Intent(this, TaskAddActivity.class);
+        intent.putExtra("newTask", task);
+        startActivity(intent);
     }
     private void onTabNameSet(TabLayout.Tab tab, int position) {
         String[] tabNames = getResources().getStringArray(R.array.tab_names);
@@ -73,13 +95,10 @@ public class MainActivity extends AppCompatActivity {
         public ScreenSlidePagerAdapter(@NonNull FragmentActivity fragmentActivity) {
             super(fragmentActivity);
         }
-
         @NonNull
         @Override
         public Fragment createFragment(int position) {
             switch (position) {
-//                case 0:
-//                    return TaskFragment.newInstance(R.layout.task_fragment);
                 case TASK_FRAGMENT_ID:
                     return new TaskFragment();
                 case CALENDAR_FRAGMENT_ID:
@@ -94,6 +113,13 @@ public class MainActivity extends AppCompatActivity {
         public int getItemCount() {
             return NUM_PAGES;
         }
+    }
+    //RECEIVES DATA FROM TASK ADD ACTIVITY
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+            //add the new task to the list shown by recyclerview in taskFragment
+        Task task = getIntent().getParcelableExtra("newTask");
     }
 
 }

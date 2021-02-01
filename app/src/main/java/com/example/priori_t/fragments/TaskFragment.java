@@ -1,5 +1,7 @@
 package com.example.priori_t.fragments;
 
+import android.content.Context;
+import android.os.Binder;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,47 +18,45 @@ import com.example.priori_t.R;
 import com.example.priori_t.model.TaskGenerator;
 import com.example.priori_t.model.entity.Task;
 import com.example.priori_t.view.TaskRecyclerAdapter;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.List;
 
 public class TaskFragment extends Fragment {
     //todo define click listeners here
-    private RecyclerView recyclerView;
+    //todo recyclerview initialization here
+    /**/
     private TaskGenerator taskGen = new TaskGenerator();
-    public static String DRAWABLE_RES;
-    private List<Task> taskList = taskGen.taskGenerator(5,3);
-    private LiveData<List<Task>> taskLiveData;
+    private TaskRecyclerAdapter taskRecyclerAdapter;
 
-    public static TaskFragment newInstance(int drawableResIndex) {
-        Bundle args = new Bundle();
-        args.putInt(DRAWABLE_RES, drawableResIndex);
-        TaskFragment taskFragment = new TaskFragment();
-        taskFragment.setArguments(args);
-        return taskFragment;
+    private OnAddTaskClicked addTaskListener;
+
+    public interface OnAddTaskClicked {
+        public void onAddTaskClicked();
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        //TASKREPO GET ALL THE ITEMS
         super.onCreate(savedInstanceState);
-
-        Bundle args = getArguments();
     }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this.getActivity());
+        recyclerView.setLayoutManager(layoutManager);
+        this.taskRecyclerAdapter = new TaskRecyclerAdapter(this.getActivity(),taskGen.taskGenerator(5,3));
+        recyclerView.setAdapter(this.taskRecyclerAdapter);
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedStateInstance) {
         View view = inflater.inflate(R.layout.task_fragment,container,false);
+
         return view;
     }
-//    @Nullable
-//    @Override
-//    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedStateInstance) {
-//        View view = inflater.inflate(R.layout.day_ofweek, container, false);
-//        TaskRecyclerAdapter adapter = new TaskRecyclerAdapter(this.getContext(),taskList);
-//        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this.getContext());
-//        recyclerView = view.findViewById(R.id.recycler_view);
-//        recyclerView.setLayoutManager(layoutManager);
-//        recyclerView.setAdapter(adapter);
-//        return view;
-//    }
+    /*todo 1: define click listeners for task complete box, edit, and add subtask box, and add task button*/
+    /*todo 2: have click listeners send data to each of the fragments associated with them*/
 }

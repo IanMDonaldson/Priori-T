@@ -14,7 +14,7 @@ import java.util.List;
 
 public class TaskRepository {
     private static TaskRepository instance;
-    private TaskDB_Impl db;
+    private TaskDB db;
     private TaskDao taskDao;
     private SubtaskDao subtaskDao;
     private MediatorLiveData<List<Task>> tasks;

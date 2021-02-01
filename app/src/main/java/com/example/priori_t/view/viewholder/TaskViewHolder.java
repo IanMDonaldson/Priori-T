@@ -13,44 +13,44 @@ import com.google.android.material.textview.MaterialTextView;
 
 public class TaskViewHolder extends RecyclerView.ViewHolder {
     private MaterialCheckBox taskCompleteCheckBox;
-    private ImageView ttcImageView;
+    private ImageView mtcImageView;
     private ImageButton createSubtaskButton;
     private ImageButton editTaskButton;
     private ImageView taskDueImageView;
     private MaterialTextView taskDueTextView;
-    private MaterialTextView ttcTextView;
+    private MaterialTextView mtcTextView;
     private MaterialTextView taskDescriptionTextView;
 
 
     public TaskViewHolder(@NonNull View v) {
         super(v);
-        ttcTextView = v.findViewById(R.id.ttc_textview);
-        taskCompleteCheckBox = v.findViewById(R.id.task_complete_checkbox);
-        createSubtaskButton = v.findViewById(R.id.create_subtask_button);
-        ttcImageView = v.findViewById(R.id.ttc_clock_imageview);
-        taskDescriptionTextView = v.findViewById(R.id.task_description_textview);
-        taskDueImageView = v.findViewById(R.id.task_due_date_imageview);
-        editTaskButton = v.findViewById(R.id.edit_task_button);
-
+        this.mtcTextView = v.findViewById(R.id.ttc_textview);
+        this.taskCompleteCheckBox = v.findViewById(R.id.task_complete_checkbox);
+        this.createSubtaskButton = v.findViewById(R.id.create_subtask_button);
+        this.mtcImageView = v.findViewById(R.id.ttc_clock_imageview);
+        this.taskDescriptionTextView = v.findViewById(R.id.task_description_textview);
+        this.taskDueImageView = v.findViewById(R.id.task_due_date_imageview);
+        this.editTaskButton = v.findViewById(R.id.edit_task_button);
+        this.taskDueTextView = v.findViewById(R.id.task_due_date_textview);
     }
     public MaterialTextView getTaskDueTextView() {
-        return taskDueTextView;
+        return this.taskDueTextView;
     }
 
     public void setTaskDueTextView(MaterialTextView taskDueTextView) {
         this.taskDueTextView = taskDueTextView;
     }
 
-    public MaterialTextView getTtcTextView() {
-        return ttcTextView;
+    public MaterialTextView getMtcTextView() {
+        return this.mtcTextView;
     }
 
-    public void setTtcTextView(MaterialTextView ttcTextView) {
-        this.ttcTextView = ttcTextView;
+    public void setMtcTextView(MaterialTextView mtcTextView) {
+        this.mtcTextView = mtcTextView;
     }
 
     public MaterialTextView getTaskDescriptionTextView() {
-        return taskDescriptionTextView;
+        return this.taskDescriptionTextView;
     }
 
     public void setTaskDescriptionTextView(MaterialTextView taskDescriptionTextView) {
