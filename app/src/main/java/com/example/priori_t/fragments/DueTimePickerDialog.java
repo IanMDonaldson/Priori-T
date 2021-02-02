@@ -17,27 +17,31 @@ import java.util.Calendar;
 public class DueTimePickerDialog extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
     private TimePickerListener timePickerListener;
     private SimpleDateFormat dateFormatter = new SimpleDateFormat("hh:mm");
+    TimePickerDialog.OnTimeSetListener onTimeSet;
     private Calendar calendar;
-    public static interface TimePickerListener {
+    public interface TimePickerListener {
         void onTimePicked(String time);
     }
+    public static DueTimePickerDialog newInstance() { return new DueTimePickerDialog(); }
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         this.calendar = Calendar.getInstance();
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
         int min = calendar.get(Calendar.MINUTE);
-        TimePickerDialog timePickerDialog = new TimePickerDialog(
-                getActivity(),this, hour, min, DateFormat.is24HourFormat(getActivity())
+
+        //timePickerListener = (TimePickerListener)getActivity();
+
+        return new TimePickerDialog(
+                getActivity(),onTimeSet, hour, min,DateFormat.is24HourFormat(getActivity())
         );
-        return timePickerDialog;
     }
 
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         Log.d(DueTimePickerDialog.class.getSimpleName(), String.format("Time(hh:mm): %d:%d", hourOfDay,minute));
-        calendar.set(0,0,0,hourOfDay,minute);
-        String formattedDate = dateFormatter.format(calendar.getTime());
+        this.calendar.set(0,0,0,hourOfDay,minute);
+        String formattedDate = dateFormatter.format(this.calendar.getTime());
         timePickerListener.onTimePicked(formattedDate);
     }
 }

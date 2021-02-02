@@ -2,32 +2,36 @@ package com.example.priori_t.model;
 
 import android.content.Context;
 
-import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
-import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.priori_t.model.converter.DateConverter;
-import com.example.priori_t.model.dao.SubtaskDao;
 import com.example.priori_t.model.dao.TaskDao;
-import com.example.priori_t.model.entity.Subtask;
 import com.example.priori_t.model.entity.Task;
 
-import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
-@Database(version=1,entities={Task.class, Subtask.class}, exportSchema = false)
+@Database(version=1,entities={Task.class}, exportSchema = false)
 @TypeConverters({DateConverter.class})
 public abstract class TaskDB extends RoomDatabase {
-    //INSTANCE//
+    abstract public TaskDao getTaskDao();
+
+    private static TaskDB instance;
+
+    public static TaskDB getInstance(Context context) {
+        if (instance == null) {
+            instance = Room.databaseBuilder(context.getApplicationContext(), TaskDB.class, "taskDB").build();
+        }
+        return instance;
+    }
+    public static void destroyTaskDB() {
+        instance = null;
+    }
+    /*//INSTANCE//
     private static volatile TaskDB taskDBInstance;
 
     //DAO//
     public abstract TaskDao taskDao();
-    public abstract SubtaskDao subtaskDao();
 
     //DBNAME and THREADS
     public static final String DATABASE_NAME="TaskDB";
@@ -58,29 +62,17 @@ public abstract class TaskDB extends RoomDatabase {
             databaseWriteExecutor.execute(() -> {
 
                 TaskDao taskDao = taskDBInstance.taskDao();
-                taskDao.deleteTasks();
-                List<Subtask> subtasks = null;
-//                subtasks.add(new Subtask("subnoth 1", "202005051200", 20));
-//                subtasks.add(new Subtask("subnoth 2", "202005051201", 20));
-//                subtasks.add(new Subtask("subnoth 3", "202005051202", 20));
-//
-//                Task task = new Task("nothing", "202006051300", 30, null);
-//                TaskSubtasks taskSubtask = new TaskSubtasks();
-//                taskSubtask.setTask(task);
-//                taskSubtask.setSubtasks(subtasks);
-//                taskDao.addTask(taskSubtask);
-//                task = new Task("nothing2", "202006061300", 30, null);
-//                taskSubtask.setTask(task);
-//                taskSubtask.setSubtasks(subtasks);
-//                taskDao.addTask(taskSubtask);
-//                task = new Task("nothing3", "202006071300", 30, null);
-//                taskSubtask.setTask(task);
-//                taskSubtask.setSubtasks(subtasks);
-//                taskDao.addTask(taskSubtask);
-//                task = new Task("nothing4", "202006081300", 30, null);
-//                taskSubtask.setTask(task);
-//                taskSubtask.setSubtasks(subtasks);
-//                taskDao.addTask(taskSubtask);
+                taskDao.deleteAll();
+
+
+                Task task = new Task("nothing", Long.valueOf("202006051300"), 30);
+                taskDao.addTask(task);
+                task = new Task("nothing2", Long.valueOf("202006061300"), 30);
+                taskDao.addTask(task);
+                task = new Task("nothing3", Long.valueOf("20200607130"), 30);
+                taskDao.addTask(task);
+                task = new Task("nothing4", Long.valueOf("202006081300"), 30);
+                taskDao.addTask(task);
             });
         }
     };
@@ -88,6 +80,5 @@ public abstract class TaskDB extends RoomDatabase {
     // DAO GETTER
     public TaskDao getTaskDao() {
         return this.taskDao();
-    }
-    public SubtaskDao getSubtaskDao() { return this.subtaskDao(); }
+    }*/
 }

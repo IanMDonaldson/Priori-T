@@ -3,8 +3,13 @@ package com.example.priori_t.activities;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStoreOwner;
 
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,9 +18,11 @@ import android.view.ViewGroup;
 import android.widget.NumberPicker;
 
 import com.example.priori_t.R;
+import com.example.priori_t.TaskViewModel;
 import com.example.priori_t.fragments.DueDatePickerDialog;
 import com.example.priori_t.fragments.DueTimePickerDialog;
 import com.example.priori_t.model.entity.Task;
+import com.example.priori_t.view.TaskRecyclerAdapter;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -26,8 +33,10 @@ import java.time.DayOfWeek;
 import java.util.Calendar;
 import java.util.Date;
 
-public class TaskAddActivity extends AppCompatActivity implements DueDatePickerDialog.DatePickedListener,DueTimePickerDialog.TimePickerListener{
+public class TaskAddFragment extends Fragment implements DueDatePickerDialog.DatePickedListener,DueTimePickerDialog.TimePickerListener{
+    private ViewModelProvider viewModelProvider;
     private static final String EXTRA_TASK = "newTask";
+    private static final String EXTRA_TIME = "time";
     private MaterialButton dueDayPickerButton;
     private MaterialButton dueTimePickerButton;
     private MaterialButton saveButton;
@@ -41,20 +50,58 @@ public class TaskAddActivity extends AppCompatActivity implements DueDatePickerD
     private static int minutes;
     private static int hours;
     private static TimePickerDialog timePickerDialog;
+    private TaskViewModel vm;
+    /*
+    *private DueDatePickerDialog dueDatePickerDialog;
+    private DueTimePickerDialog dueTimePickerDialog;
+    private TextInputEditText taskDescriptionEditText;
+    private MaterialButton taskDueDateButton;
+    private MaterialButton taskDueTimeButton;
+    private MaterialButton saveButton;
+    private TaskViewModel vm;
+    public static TaskAddFragment newInstance() {
+        TaskAddFragment fragment = new TaskAddFragment();
+        Bundle args = new Bundle();
+        //args.setArguments(Data that needs to be sent);
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_task_add);
-        this.dueDayPickerButton = findViewById(R.id.task_due_date_button);
-        this.dueTimePickerButton = findViewById(R.id.task_due_time_button);
-        this.saveButton = findViewById(R.id.save_button);
-        this.minutesPicker = findViewById(R.id.number_picker_minutes);
-        this.hoursPicker = findViewById(R.id.number_picker_hours);
-        this.taskDescription = findViewById(R.id.task_description_edit_text);
-        initializeViews();
     }
-    private void initializeViews() {
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_task_add, container, false);
+    }
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        this.taskDescriptionEditText = view.findViewById(R.id.task_description_edit_text);
+    }
+    * */
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        vm = new ViewModelProvider(getActivity()).get(TaskViewModel.class);
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_task_add,container,false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        this.dueDayPickerButton = view.findViewById(R.id.task_due_date_button);
+        this.dueTimePickerButton = view.findViewById(R.id.task_due_time_button);
+        this.saveButton = view.findViewById(R.id.save_button);
+        this.minutesPicker = view.findViewById(R.id.number_picker_minutes);
+        this.hoursPicker = view.findViewById(R.id.number_picker_hours);
+        this.taskDescription = view.findViewById(R.id.task_description_edit_text);
         hoursPicker.setMinValue(0);
         hoursPicker.setMaxValue(24);
         minutesPicker.setMinValue(0);
@@ -63,15 +110,16 @@ public class TaskAddActivity extends AppCompatActivity implements DueDatePickerD
         dueDayPickerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DueDatePickerDialog datePicker = new DueDatePickerDialog();
-                datePicker.show(getSupportFragmentManager(), EXTRA_TASK);
+                DueDatePickerDialog datePicker = new DueDatePickerDialog().newInstance();
+
+                datePicker.show(getParentFragmentManager(), EXTRA_TASK);
             }
         });
         dueTimePickerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DueTimePickerDialog timePicker = new DueTimePickerDialog();
-                timePicker.show(getSupportFragmentManager(), EXTRA_TASK);
+                timePicker.show(getParentFragmentManager(), EXTRA_TIME);
             }
         });
 
@@ -79,8 +127,6 @@ public class TaskAddActivity extends AppCompatActivity implements DueDatePickerD
             @Override
             public void onClick(View v) {
                 taskDescriptionText = taskDescription.getText().toString();
-
-                Intent intent = getIntent();
                 Task task = new Task();
                 //fill task with data from inputs
 
@@ -101,12 +147,20 @@ public class TaskAddActivity extends AppCompatActivity implements DueDatePickerD
                     e.printStackTrace();
                 }
                 task.setDueDate(Long.valueOf(calendar.getTimeInMillis()));
-               ///
-                intent.putExtra("newTask", task);
-                setResult(RESULT_OK,intent);
-                finish();
+                ///
+                vm.addTask(task);
+
             }
         });
+    }
+
+    private void initializeViews() {
+
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
     }
 
     @Override

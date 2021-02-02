@@ -26,7 +26,6 @@ public class TaskViewHolder extends RecyclerView.ViewHolder {
         super(v);
         this.mtcTextView = v.findViewById(R.id.ttc_textview);
         this.taskCompleteCheckBox = v.findViewById(R.id.task_complete_checkbox);
-        this.createSubtaskButton = v.findViewById(R.id.create_subtask_button);
         this.mtcImageView = v.findViewById(R.id.ttc_clock_imageview);
         this.taskDescriptionTextView = v.findViewById(R.id.task_description_textview);
         this.taskDueImageView = v.findViewById(R.id.task_due_date_imageview);

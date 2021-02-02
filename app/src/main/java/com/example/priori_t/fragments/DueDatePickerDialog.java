@@ -20,12 +20,17 @@ public class DueDatePickerDialog extends DialogFragment implements DatePickerDia
     private static final String TAG = DueDatePickerDialog.class.getSimpleName();
     private Calendar calendar;
     private DatePickedListener datePickedListener;
+    DatePickerDialog.OnDateSetListener onDateSet;
     private SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy");
-
+    static final String DATE_PICKED_LISTENER = "datePickedListener";
     public static interface DatePickedListener {
         void onDatePicked(String date);
     }
+    public static DueDatePickerDialog newInstance() {
+        return new DueDatePickerDialog();
+    }
 
+    public DueDatePickerDialog(){}
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
@@ -34,10 +39,10 @@ public class DueDatePickerDialog extends DialogFragment implements DatePickerDia
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-        datePickedListener = (DatePickedListener) getActivity();
+        //datePickedListener = (DatePickedListener) getActivity();
 
         return new DatePickerDialog(
-                getActivity(), this, year, month, day
+                getActivity(), onDateSet, year, month, day
         );
     }
 

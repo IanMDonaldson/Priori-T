@@ -35,8 +35,6 @@ public class Task implements Comparable<Task>, Serializable {
     @ColumnInfo(name="is_complete")
     private boolean isComplete;
 
-    @Ignore
-    private List<Subtask> subtasks;
 
     public Task() {
     }
@@ -46,24 +44,9 @@ public class Task implements Comparable<Task>, Serializable {
         this.todo = todo;
         this.dueDate = dueDate;
         this.minToComplete = mtc;
-    }
-    @Ignore
-    public Task(String todo, Long dueDate, int mtc, List<Subtask> subtasks) {
-        this.todo = todo;
-        this.dueDate = dueDate;
-        this.minToComplete = mtc;
-        this.subtasks = subtasks;
+        this.isComplete = false;
     }
 
-
-    /*@Override
-    public String toString() {
-        return "Task{" +
-                "id= " + id + '\n' +
-                ", dueDate= " + dueDate + '\n' +
-                ", timeToComplete= " + minToComplete + '\n' +
-                ", subtaskCount = " + subtasks.size();
-    }*/
     public int getId() {
         return id;
     }
@@ -97,7 +80,6 @@ public class Task implements Comparable<Task>, Serializable {
         return this.minToComplete;
     }
 
-    public List<Subtask> getSubtasks() { return this.subtasks; }
 
     public void setDueDate(Long dueDate) {
         this.dueDate = dueDate;
@@ -107,7 +89,6 @@ public class Task implements Comparable<Task>, Serializable {
         this.minToComplete = minToComplete;
     }
 
-    public void setSubtasks(List<Subtask> subtasks) { this.subtasks = subtasks; }
 
     /*This is used to sort tasks by dueDate and organize by day of week*/
     @Override

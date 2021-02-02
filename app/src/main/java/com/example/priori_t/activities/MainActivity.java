@@ -3,13 +3,15 @@ package com.example.priori_t.activities;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -17,8 +19,9 @@ import android.widget.ImageButton;
 
 import com.example.priori_t.R;
 
-import com.example.priori_t.model.converter.DateConverter;
-import com.example.priori_t.model.entity.Subtask;
+import com.example.priori_t.TaskViewModel;
+import com.example.priori_t.model.TaskDB;
+import com.example.priori_t.model.TaskRepository;
 import com.example.priori_t.model.entity.Task;
 import com.example.priori_t.fragments.CalendarFragment;
 import com.example.priori_t.fragments.TaskFragment;
@@ -26,14 +29,13 @@ import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.TimeZone;
 
 public class MainActivity extends AppCompatActivity {
     public List<Task> taskEntities;
+    private TaskDB taskDB;
+    private TaskRepository taskRepository;
     private ViewPager2 viewPager;
     private TabLayout tabLayout;
     private AppBarLayout appBar;
@@ -43,25 +45,28 @@ public class MainActivity extends AppCompatActivity {
     private CalendarFragment calendarFragment;
     private ArrayList<Fragment> fragments;
     private ImageButton taskAddButton;
+    private ConstraintLayout activityContainer;
     static Task newTask = new Task();
+    private TaskViewModel vm;
 
-     final int TASK_REQUEST = 1;
+    final int TASK_REQUEST = 1;
+    final static String TASK_FRAGMENT = "TaskFragment";
+    public static void getAddTaskResult(Task task) {
+
+    }
     //TODO: recyclerview Adapter needs to be set here or..in taskFragment
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        activityContainer = findViewById(R.id.activity_container);
         viewPager = findViewById(R.id.viewPager);
         tabLayout = findViewById(R.id.tabLayout);
         this.taskAddButton = findViewById(R.id.button_task_add);
 
-//        appBar = findViewById(R.id.appBar);
-//        fragments = new ArrayList<>();
-//        fragments.add(new TaskFragment());
-//        fragments.add(new CalendarFragment());
-
         pageAdapter = new ScreenSlidePagerAdapter(this);
         viewPager.setAdapter(pageAdapter);
+        this.vm = new ViewModelProvider(this).get(TaskViewModel.class);
         new TabLayoutMediator(tabLayout, viewPager,
                 new TabLayoutMediator.TabConfigurationStrategy() {
                     @Override
@@ -73,16 +78,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //send data to activity handling adding task
-               onAddTaskClicked(v);
+               onAddTaskClicked(viewPager, tabLayout);
+
             }
         });
     }
-    //sends data to activity
-    public void onAddTaskClicked(View view) {
-        Task task = new Task();
-        Intent intent = new Intent(this, TaskAddActivity.class);
-        intent.putExtra("newTask", task);
-        startActivity(intent);
+    public void onAddTaskClicked(View viewPager, View tabLayout) {
+        TaskAddFragment taskAddFragment = new TaskAddFragment();
+
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.remove(taskFragment);
+        viewPager.setVisibility(View.INVISIBLE);
+        ft.replace(R.id.activity_container, new TaskAddFragment()).addToBackStack(TASK_FRAGMENT);
+
+        ft.commit();
+        getSupportFragmentManager().executePendingTransactions();
     }
     private void onTabNameSet(TabLayout.Tab tab, int position) {
         String[] tabNames = getResources().getStringArray(R.array.tab_names);
@@ -100,9 +110,11 @@ public class MainActivity extends AppCompatActivity {
         public Fragment createFragment(int position) {
             switch (position) {
                 case TASK_FRAGMENT_ID:
-                    return new TaskFragment();
+                    taskFragment = new TaskFragment();
+                    return taskFragment;
                 case CALENDAR_FRAGMENT_ID:
-                    return new CalendarFragment();
+                    calendarFragment = new CalendarFragment();
+                    return calendarFragment;
                 default:
                     break;
             }
@@ -113,6 +125,7 @@ public class MainActivity extends AppCompatActivity {
         public int getItemCount() {
             return NUM_PAGES;
         }
+
     }
     //RECEIVES DATA FROM TASK ADD ACTIVITY
     @Override
@@ -120,6 +133,7 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
             //add the new task to the list shown by recyclerview in taskFragment
         Task task = getIntent().getParcelableExtra("newTask");
+
     }
 
 }

@@ -2,6 +2,7 @@ package com.example.priori_t.model.dao;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
@@ -23,15 +24,17 @@ public interface TaskDao {
     void addTask(Task task);
 
     @Insert
-    void addTasks(List<Task> tasks);
+    void addTasks(Task... tasks);
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
     void updateTask(Task task);
 
     @Query("DELETE FROM task")
-    void deleteTasks();
+    void deleteAll();
 
     @Query("DELETE FROM task where id = :id")
     void deleteTask(int id);
 
+    @Delete
+    void deleteTask(Task task);
 }
