@@ -3,7 +3,10 @@ package com.example.priori_t.activities;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStoreOwner;
@@ -21,6 +24,7 @@ import com.example.priori_t.R;
 import com.example.priori_t.TaskViewModel;
 import com.example.priori_t.fragments.DueDatePickerDialog;
 import com.example.priori_t.fragments.DueTimePickerDialog;
+import com.example.priori_t.fragments.TaskFragment;
 import com.example.priori_t.model.entity.Task;
 import com.example.priori_t.view.TaskRecyclerAdapter;
 import com.google.android.material.button.MaterialButton;
@@ -50,6 +54,7 @@ public class TaskAddFragment extends Fragment implements DueDatePickerDialog.Dat
     private static int minutes;
     private static int hours;
     private static TimePickerDialog timePickerDialog;
+    private ConstraintLayout fragmentTaskAdd;
     private TaskViewModel vm;
     /*
     *private DueDatePickerDialog dueDatePickerDialog;
@@ -102,10 +107,11 @@ public class TaskAddFragment extends Fragment implements DueDatePickerDialog.Dat
         this.minutesPicker = view.findViewById(R.id.number_picker_minutes);
         this.hoursPicker = view.findViewById(R.id.number_picker_hours);
         this.taskDescription = view.findViewById(R.id.task_description_edit_text);
-        hoursPicker.setMinValue(0);
-        hoursPicker.setMaxValue(24);
-        minutesPicker.setMinValue(0);
-        minutesPicker.setMaxValue(59);
+        this.fragmentTaskAdd = view.findViewById(R.id.fragment_task_add);
+        this.hoursPicker.setMinValue(0);
+        this.hoursPicker.setMaxValue(24);
+        this.minutesPicker.setMinValue(0);
+        this.minutesPicker.setMaxValue(59);
 
         dueDayPickerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,7 +155,10 @@ public class TaskAddFragment extends Fragment implements DueDatePickerDialog.Dat
                 task.setDueDate(Long.valueOf(calendar.getTimeInMillis()));
                 ///
                 vm.addTask(task);
-
+                fragmentTaskAdd.setVisibility(View.INVISIBLE);
+                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.fragment_task_add, new TaskFragment());
+                ft.commit();
             }
         });
     }

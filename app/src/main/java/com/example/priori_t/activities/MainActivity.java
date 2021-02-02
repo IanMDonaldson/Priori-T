@@ -87,12 +87,30 @@ public class MainActivity extends AppCompatActivity {
         TaskAddFragment taskAddFragment = new TaskAddFragment();
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        viewPager.setVisibility(View.GONE);
+        tabLayout.setVisibility(View.GONE);
         ft.remove(taskFragment);
-        viewPager.setVisibility(View.INVISIBLE);
+
         ft.replace(R.id.activity_container, new TaskAddFragment()).addToBackStack(TASK_FRAGMENT);
 
         ft.commit();
         getSupportFragmentManager().executePendingTransactions();
+    }
+    public void onSaveButtonClicked() {
+        activityContainer = findViewById(R.id.activity_container);
+        viewPager = findViewById(R.id.viewPager);
+        tabLayout = findViewById(R.id.tabLayout);
+        this.taskAddButton = findViewById(R.id.button_task_add);
+
+        pageAdapter = new ScreenSlidePagerAdapter(this);
+        viewPager.setAdapter(pageAdapter);
+        new TabLayoutMediator(tabLayout, viewPager,
+                new TabLayoutMediator.TabConfigurationStrategy() {
+                    @Override
+                    public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
+                        onTabNameSet(tab,position);
+                    }
+                }).attach();
     }
     private void onTabNameSet(TabLayout.Tab tab, int position) {
         String[] tabNames = getResources().getStringArray(R.array.tab_names);
